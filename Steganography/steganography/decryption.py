@@ -3,6 +3,8 @@
 '''
 Created on Jan 21, 2013
 
+Executable module for decryption data into a image
+
 @author: Cherencey Gaylord
 '''
 
@@ -13,6 +15,7 @@ import logging
 import os
 
 def main(args=None):
+    '''Main method which get nom_fichier_image nom_fichier_message key_AES as arguments'''
     
     response = defineParser(args)
     
@@ -40,6 +43,7 @@ def main(args=None):
         logging.error("This file doesn't exist")
 
 def getMessageFromImage(nameImage):
+    '''Method which extract and print the message from the picture'''
     
     messageSizeString = ""
     
@@ -103,6 +107,9 @@ def defineParser(args):
     logging.info("Argument passed %s", args)
 
     return args
+   
+##########################################
+# permitted to make the module executable
     
 if __name__ == '__main__':
     main()

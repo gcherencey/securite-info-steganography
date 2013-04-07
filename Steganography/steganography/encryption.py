@@ -3,6 +3,8 @@
 '''
 Created on Jan 21, 2013
 
+Executable module for encryption data into a image
+
 @author: Cherencey Gaylord
 '''
 
@@ -17,6 +19,7 @@ FAILURE = 1
 SUCCESS = 0
 
 def main(args=None):
+    '''Main method which get nom_fichier_image nom_fichier_message key_AES as arguments'''
     
     response = defineParser(args)
     messageAES = ""
@@ -54,6 +57,7 @@ def main(args=None):
         logging.error("This file doesn't exist")
         
 def getMessageFromFile(nameFile):
+    '''Method which extract the message from the text file'''
     
     fichier = open(nameFile, "r")
     clearMessage = ""
@@ -65,42 +69,9 @@ def getMessageFromFile(nameFile):
     
     return clearMessage
         
-def defineParser(args):
-    """Definition of the parser and the behavior following the options"""
-
-    parser = OptionParser(usage="""Usage: %prog nom_fichier_image nom_fichier_message key_AES (16 caracters long) [options] : Use the -h option to get help""")
-
-    parser.add_option("-v", "--verbose",
-                      action = "store_const",
-                      const = logging.INFO,
-                      dest = "level",
-                      help = "Print a message each time  a  module  is initialized")
-    parser.add_option("-d", "--debug",
-                      action = "store_const",
-                      const = logging.DEBUG,
-                      dest = "level",
-                      help = "Print debug information")
-
-    (options, args) = parser.parse_args(args)
-
-    if len(args) == 0:
-        parser.error("You have to put parameters")
-    
-    elif len(args) == 1 or len(args) == 2 :
-        parser.error("Not enough arguments")
-        
-    elif len(args) > 3:
-        parser.error("Too many arguments")
-
-    logging.basicConfig(format = '%(asctime)s -> %(levelname)s : %(message)s',
-                        level = options.level,
-                        datefmt = '%m/%d/%Y %I:%M:%S %p')
-
-    logging.info("Argument passed %s", args)
-
-    return args
 
 def isThisTypeOfFile(name):
+    '''Method which check if the file is a picture (png/bmp/jpg/jpeg) returning True or False'''
 
     pattern_png = re.compile(".png$")
     pattern_bmp = re.compile(".bmp$")
@@ -114,6 +85,7 @@ def isThisTypeOfFile(name):
         return False
 
 def steganography(nameImage, messageAES):
+    '''Method which hide the message encrypted'''
     
     if isThisTypeOfFile(nameImage):
         
@@ -151,6 +123,44 @@ def steganography(nameImage, messageAES):
         
     else :
         logging.error("The file is not a valide image file")
+        
+def defineParser(args):
+    """Definition of the parser and the behavior following the options"""
+
+    parser = OptionParser(usage="""Usage: %prog nom_fichier_image nom_fichier_message key_AES (16 caracters long) [options] : Use the -h option to get help""")
+
+    parser.add_option("-v", "--verbose",
+                      action = "store_const",
+                      const = logging.INFO,
+                      dest = "level",
+                      help = "Print a message each time  a  module  is initialized")
+    parser.add_option("-d", "--debug",
+                      action = "store_const",
+                      const = logging.DEBUG,
+                      dest = "level",
+                      help = "Print debug information")
+
+    (options, args) = parser.parse_args(args)
+
+    if len(args) == 0:
+        parser.error("You have to put parameters")
+    
+    elif len(args) == 1 or len(args) == 2 :
+        parser.error("Not enough arguments")
+        
+    elif len(args) > 3:
+        parser.error("Too many arguments")
+
+    logging.basicConfig(format = '%(asctime)s -> %(levelname)s : %(message)s',
+                        level = options.level,
+                        datefmt = '%m/%d/%Y %I:%M:%S %p')
+
+    logging.info("Argument passed %s", args)
+
+    return args
+
+##########################################
+# permitted to make the module executable
 
 if __name__ == '__main__':
     main()
