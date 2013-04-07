@@ -1,0 +1,11 @@
+'''
+Created on Apr 7, 2013
+
+@author: Utilisateur
+'''
+
+#!usr/bin/env python2.6
+
+from steganography.decryption import main
+
+main()
