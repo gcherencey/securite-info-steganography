@@ -76,7 +76,7 @@ def getMessageFromImage(nameImage):
 def defineParser(args):
     """Definition of the parser and the behavior following the options"""
 
-    parser = OptionParser(usage="""Usage: %prog nom_fichier_image key_AES [options] : Use the -h option to get help""")
+    parser = OptionParser(usage="""Usage: %prog image_file_name key_AES [options] : Use the -h option to get help""")
 
     parser.add_option("-v", "--verbose",
                       action = "store_const",

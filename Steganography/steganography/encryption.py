@@ -75,10 +75,8 @@ def isThisTypeOfFile(name):
 
     pattern_png = re.compile(".png$")
     pattern_bmp = re.compile(".bmp$")
-    pattern_jpg = re.compile(".jpg$")
-    pattern_jpeg = re.compile(".jpeg$")
     
-    if pattern_bmp.search(name) or pattern_png.search(name) or pattern_jpg.search(name) or pattern_jpeg(name):
+    if pattern_bmp.search(name) or pattern_png.search(name):
         return True
 
     else:
@@ -127,7 +125,7 @@ def steganography(nameImage, messageAES):
 def defineParser(args):
     """Definition of the parser and the behavior following the options"""
 
-    parser = OptionParser(usage="""Usage: %prog nom_fichier_image nom_fichier_message key_AES (16 caracters long) [options] : Use the -h option to get help""")
+    parser = OptionParser(usage="""Usage: %prog image_file_name message_file_name key_AES (16 caracters long) [options] : Use the -h option to get help""")
 
     parser.add_option("-v", "--verbose",
                       action = "store_const",
