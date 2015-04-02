@@ -1,0 +1,1 @@
+Developpement de scripts Python 2.6 permettant de cacher de l'information texte dans une image et de la recuperer
